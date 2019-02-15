@@ -1,4 +1,4 @@
-defmodule SimpleFormat do
+defmodule SimplexFormat do
   @moduledoc """
   Helpers related to formatting text.
   """

@@ -1,10 +1,10 @@
-defmodule SimpleFormatTest do
+defmodule SimplexFormatTest do
   use ExUnit.Case, async: true
 
-  import SimpleFormat
+  import SimplexFormat
   import Phoenix.HTML
 
-  doctest SimpleFormat
+  doctest SimplexFormat
 
   test "wraps paragraphs" do
     formatted =

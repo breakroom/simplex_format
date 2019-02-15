@@ -1,6 +1,9 @@
-# SimpleFormat
+# SimplexFormat
 
-SimpleFormat is an Elixir library for turning plain text into formatted HTML. It's drop in replacement for (and fork of) `text_to_html` from `Phoenix.HTML.Format`, extended to include an `auto_link` flag which converts HTTP URLs into anchor tags.
+SimplexFormat is an Elixir library for turning plain text into formatted
+HTML. It's drop in replacement for (and fork of) `text_to_html` from
+`Phoenix.HTML.Format`, extended to include an `auto_link` flag which converts
+HTTP URLs into anchor tags.
 
 ## License
 

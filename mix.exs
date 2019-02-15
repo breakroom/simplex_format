@@ -1,28 +1,28 @@
-defmodule SimpleFormat.MixProject do
+defmodule SimplexFormat.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :simple_format,
+      app: :simplex_format,
       version: "0.1.0",
       elixir: "~> 1.7",
       description: description(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      name: "simple_format",
-      source_url: "https://github.com/poplarhq/simple_format"
+      name: "simplex_format",
+      source_url: "https://github.com/poplarhq/simplex_format"
     ]
   end
 
   defp description do
-    "Convert plain text to formatted HTML, including automatically linking URLs"
+    "Converts plain text to formatted HTML, including automatically linking URLs"
   end
 
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/poplarhq/simple_format"}
+      links: %{"GitHub" => "https://github.com/poplarhq/simplex_format"}
     ]
   end
 
