@@ -140,7 +140,7 @@ defmodule SimplexFormat do
     {leading, middle, trailing}
   end
 
-  def wrap_url(url, url_attributes) do
+  defp wrap_url(url, url_attributes) do
     attributes = Keyword.merge(url_attributes, href: url)
     Phoenix.HTML.Tag.content_tag(:a, url, attributes)
   end
