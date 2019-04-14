@@ -180,6 +180,20 @@ defmodule SimplexFormatTest do
            """
   end
 
+  test "auto_link with an emjoi leading the line" do
+    formatted =
+      format(
+        """
+        👋 Have you seen https://www.google.com? It's pretty good.
+        """,
+        auto_link: true
+      )
+
+    assert formatted == """
+           <p>👋 Have you seen <a href=\"https://www.google.com\">https://www.google.com</a>? It&#39;s pretty good.</p>
+           """
+  end
+
   defp format(text, opts \\ []) do
     text |> text_to_html(opts) |> safe_to_string
   end

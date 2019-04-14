@@ -128,14 +128,13 @@ defmodule SimplexFormat do
     end
   end
 
-  defp split_at_indices(text, {index, length}) do
-    {leading, rem} =
-      text
-      |> String.split_at(index)
+  defp split_at_indices(text, {index, split_length}) do
+    leading = binary_part(text, 0, index)
+    middle = binary_part(text, index, split_length)
 
-    {middle, trailing} =
-      rem
-      |> String.split_at(length)
+    trailing_index = index + split_length
+    trailing_length = byte_size(text) - trailing_index
+    trailing = binary_part(text, trailing_index, trailing_length)
 
     {leading, middle, trailing}
   end
