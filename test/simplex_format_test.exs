@@ -194,6 +194,20 @@ defmodule SimplexFormatTest do
            """
   end
 
+  test "auto_link with a malicious script tag" do
+    formatted =
+      format(
+        """
+        <script src=http://www.example.com/malicious-code.js></script>
+        """,
+        auto_link: true
+      )
+
+    assert formatted == """
+           <p>&lt;script src=<a href=\"http://www.example.com/malicious-code.js&amp;gt;&amp;lt;/script&amp;gt\">http://www.example.com/malicious-code.js&amp;gt;&amp;lt;/script&amp;gt</a>;</p>
+           """
+  end
+
   defp format(text, opts \\ []) do
     text |> text_to_html(opts) |> safe_to_string
   end
