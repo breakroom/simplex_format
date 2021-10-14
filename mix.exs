@@ -11,7 +11,7 @@ defmodule SimplexFormat.MixProject do
       deps: deps(),
       package: package(),
       name: "simplex_format",
-      source_url: "https://github.com/poplarhq/simplex_format"
+      source_url: "https://github.com/breakroom/simplex_format"
     ]
   end
 
@@ -22,7 +22,7 @@ defmodule SimplexFormat.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/poplarhq/simplex_format"}
+      links: %{"GitHub" => "https://github.com/breakroom/simplex_format"}
     ]
   end
 
