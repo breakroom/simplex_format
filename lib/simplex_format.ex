@@ -52,7 +52,12 @@ defmodule SimplexFormat do
     |> Phoenix.HTML.html_escape()
   end
 
-  defp maybe_html_escape(string, true), do: Plug.HTML.html_escape(string)
+  defp maybe_html_escape(string, true) do
+    string
+    |> Phoenix.HTML.html_escape()
+    |> Phoenix.HTML.safe_to_string()
+  end
+
   defp maybe_html_escape(string, false), do: string
 
   defp not_blank?("\r\n" <> rest), do: not_blank?(rest)
