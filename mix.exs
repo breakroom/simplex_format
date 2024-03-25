@@ -5,7 +5,7 @@ defmodule SimplexFormat.MixProject do
     [
       app: :simplex_format,
       version: "0.2.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.14",
       description: description(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
