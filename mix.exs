@@ -34,7 +34,8 @@ defmodule SimplexFormat.MixProject do
 
   defp deps do
     [
-      {:phoenix_html, "~> 2.11 or ~> 3.0"},
+      {:phoenix_html, "~> 2.11 or ~> 3.0 or ~> 4.0"},
+      {:phoenix_html_helpers, "~> 1.0"},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false}
     ]
   end

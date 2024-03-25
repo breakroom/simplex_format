@@ -3,6 +3,9 @@ defmodule SimplexFormat do
   Helpers related to formatting text.
   """
 
+  import Phoenix.HTML, only: [html_escape: 1, safe_to_string: 1, raw: 1]
+  import PhoenixHTMLHelpers.Tag, only: [content_tag: 3, tag: 1]
+
   @doc ~S"""
   Returns text transformed into HTML using simple formatting rules.
 
@@ -49,13 +52,13 @@ defmodule SimplexFormat do
     |> String.split(["\n\n", "\r\n\r\n"], trim: true)
     |> Enum.filter(&not_blank?/1)
     |> Enum.map(&wrap_paragraph(&1, wrapper_tag, attributes, insert_brs?, auto_link?, url_attrs))
-    |> Phoenix.HTML.html_escape()
+    |> html_escape()
   end
 
   defp maybe_html_escape(string, true) do
     string
-    |> Phoenix.HTML.html_escape()
-    |> Phoenix.HTML.safe_to_string()
+    |> html_escape()
+    |> safe_to_string()
   end
 
   defp maybe_html_escape(string, false), do: string
@@ -72,21 +75,21 @@ defmodule SimplexFormat do
       |> insert_brs(insert_brs?)
       |> auto_link(auto_link?, url_attrs)
 
-    [Phoenix.HTML.Tag.content_tag(tag, prepared_text, attributes), ?\n]
+    [content_tag(tag, prepared_text, attributes), ?\n]
   end
 
   defp insert_brs(text, false) do
     text
     |> split_lines()
     |> Enum.intersperse(?\s)
-    |> Phoenix.HTML.raw()
+    |> raw()
   end
 
   defp insert_brs(text, true) do
     text
     |> split_lines()
-    |> Enum.map(&Phoenix.HTML.raw/1)
-    |> Enum.intersperse([Phoenix.HTML.Tag.tag(:br), ?\n])
+    |> Enum.map(&raw/1)
+    |> Enum.intersperse([tag(:br), ?\n])
   end
 
   defp split_lines(text) do
@@ -108,7 +111,7 @@ defmodule SimplexFormat do
   end
 
   defp assemble_links(runs, [line | lines], url_attrs) do
-    text = Phoenix.HTML.safe_to_string(line)
+    text = safe_to_string(line)
 
     case url_indices(text) do
       nil ->
@@ -116,8 +119,8 @@ defmodule SimplexFormat do
 
       indices ->
         {leading, url, trailing} = split_at_indices(text, indices)
-        safe_leading = Phoenix.HTML.raw(leading)
-        safe_trailing = Phoenix.HTML.raw(trailing)
+        safe_leading = raw(leading)
+        safe_trailing = raw(trailing)
         safe_url = wrap_url(url, url_attrs)
 
         assemble_links(runs ++ [safe_leading, safe_url], [safe_trailing] ++ lines, url_attrs)
@@ -146,6 +149,6 @@ defmodule SimplexFormat do
 
   defp wrap_url(url, url_attributes) do
     attributes = Keyword.merge(url_attributes, href: url)
-    Phoenix.HTML.Tag.content_tag(:a, url, attributes)
+    content_tag(:a, url, attributes)
   end
 end
